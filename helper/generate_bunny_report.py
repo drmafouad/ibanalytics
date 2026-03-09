@@ -65,6 +65,7 @@ class InvestorBunnyGenerator:
             "{{TARGET_WALL}}": f"<div class='stat-item'><div class='stat-label'>Institutional 12M</div><div class='stat-value'>${price*1.2:.2f}</div></div>",
             "{{RAW_PRICE}}": str(price),
             "{{RAW_STOP}}": str(price*0.94),
+            "{{TICKER}}": ticker,
             "{{DISCLOSURE_TEXT}}": f"Bunny Intelligence Engine v2.0 for {ticker}. Educational use only."
         }
 

@@ -413,6 +413,7 @@
             <div class="logo-text">Investor Bunny</div>
         </div>
         <nav class="nav-list">
+            <a href="../index.html" class="nav-item">Central Intelligence</a>
             <a href="#overview" class="nav-item active">Executive Summary</a>
             <a href="#market" class="nav-item">Market Dynamics</a>
             <a href="#technicals" class="nav-item">Alpha Indicators</a>
@@ -503,8 +504,30 @@
                 </div>
             </div>
 
+            <div class="card span-12" style="height: 600px;">
+                <div class="card-title">TECHNICAL CHART <span>Live Data</span></div>
+                <div id="tradingview_widget" style="height: calc(100% - 40px); width: 100%;"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                <script type="text/javascript">
+                    new TradingView.widget({
+                        "autosize": true,
+                        "symbol": "{{TICKER}}",
+                        "interval": "D",
+                        "timezone": "Etc/UTC",
+                        "theme": "light",
+                        "style": "1",
+                        "locale": "en",
+                        "toolbar_bg": "#fdfaf6",
+                        "enable_publishing": false,
+                        "hide_side_toolbar": false,
+                        "allow_symbol_change": true,
+                        "container_id": "tradingview_widget"
+                    });
+                </script>
+            </div>
+
             <div class="card span-4">
-                <div class="card-title">CHART CONTEXT</div>
+                <div class="card-title">RANGE CONTEXT</div>
                 <div
                     style="height: 10px; background: #f2ede6; border-radius: 5px; margin-bottom: 1rem; overflow: hidden;">
                     <div

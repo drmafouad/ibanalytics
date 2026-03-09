@@ -448,6 +448,7 @@
         </div>
         <nav>
             <ul class="nav-list">
+                <li><a href="../index.html" class="nav-item">Central Intelligence</a></li>
                 <li><a href="#overview" class="nav-item active">Executive Summary</a></li>
                 <li><a href="#market" class="nav-item">Market Dynamics</a></li>
                 <li><a href="#technicals" class="nav-item">Alpha Indicators</a></li>
@@ -583,6 +584,28 @@
                 </div>
             </div>
 
+            <div class="card span-12" style="height: 600px;">
+                <div class="card-title">TECHNICAL CHART <span>Live Data (MRVL)</span></div>
+                <div id="tradingview_widget_mrvl" style="height: calc(100% - 40px); width: 100%;"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                <script type="text/javascript">
+                    new TradingView.widget({
+                        "autosize": true,
+                        "symbol": "MRVL",
+                        "interval": "D",
+                        "timezone": "Etc/UTC",
+                        "theme": "light",
+                        "style": "1",
+                        "locale": "en",
+                        "toolbar_bg": "#fdfaf6",
+                        "enable_publishing": false,
+                        "hide_side_toolbar": false,
+                        "allow_symbol_change": true,
+                        "container_id": "tradingview_widget_mrvl"
+                    });
+                </script>
+            </div>
+
             <div class="card span-4">
                 <div class="card-title">CHART DISCIPLINE <span>Range Context</span></div>
                 <div style="display: flex; flex-direction: column; gap: 2rem; height: 100%;">
@@ -599,7 +622,8 @@
                         </div>
                         <div
                             style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.7rem; color: var(--text-secondary); font-weight: 600;">
-                            <span>$46.93</span><span>$102.70</span></div>
+                            <span>$46.93</span><span>$102.70</span>
+                        </div>
                     </div>
                 </div>
             </div>
