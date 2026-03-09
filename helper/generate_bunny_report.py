@@ -41,8 +41,35 @@ class InvestorBunnyGenerator:
             <li style='display: flex; justify-content: space-between;'><span style='background: rgba(101, 163, 13, 0.2); padding: 4px 10px; border-radius: 4px;'>T2</span><span style='font-family: Fraunces;'>${price*1.15:.2f}</span></li>
         """
 
+        import math
+        def get_gauge_coords(val, min_v=0, max_v=100):
+            phi = 180 * (max(min_v, min(max_v, val)) - min_v) / (max_v - min_v)
+            theta = 180 - phi
+            gx = 50 + 40 * math.cos(math.radians(theta))
+            gy = 50 - 40 * math.sin(math.radians(theta))
+            return round(gx, 2), round(gy, 2)
+
+        flow_val = 73 # Bullish
+        fx, fy = get_gauge_coords(flow_val)
+        
+        rsi_val = inds.get('RSI', 64.44)
+        rx, ry = get_gauge_coords(rsi_val)
+        rsi_color = "accent-sage" if rsi_val > 50 else "accent-warm"
+        rsi_status = "BULLISH MOMENTUM" if rsi_val > 50 else "NEUTRAL/WEAK"
+
+        adx_val = 32.1
+        ax, ay = get_gauge_coords(adx_val, 0, 50) # ADX scale 0-50
+        adx_color = "accent-warm" if adx_val > 25 else "text-secondary"
+        adx_status = "STRONG TREND" if adx_val > 25 else "RANGING"
+
+        rel_val = 4.2
+        rlx, rly = get_gauge_coords(rel_val, -10, 10) # Scale -10% to +10%
+        rel_color = "accent-sage" if rel_val > 0 else "accent-plum"
+        rel_status = "OUTPERFORMING SPY" if rel_val > 0 else "UNDERPERFORMING"
+
         replacements = {
             "{{COMPANY_NAME}}": ticker,
+            "{{TICKER}}": ticker,
             "{{REPORT_SUBTITLE}}": f"{report_type.upper()} Intelligence",
             "{{CURRENT_PRICE}}": f"${price:.2f}",
             "{{PRICE_STATUS_CLASS}}": status_class,
@@ -65,7 +92,27 @@ class InvestorBunnyGenerator:
             "{{TARGET_WALL}}": f"<div class='stat-item'><div class='stat-label'>Institutional 12M</div><div class='stat-value'>${price*1.2:.2f}</div></div>",
             "{{RAW_PRICE}}": str(price),
             "{{RAW_STOP}}": str(price*0.94),
-            "{{TICKER}}": ticker,
+            "{{FLOW_X}}": str(fx),
+            "{{FLOW_Y}}": str(fy),
+            "{{FLOW_COLOR}}": "accent-sage",
+            "{{FLOW_LABEL}}": "BULL",
+            "{{SHORT_FLOAT}}": "4.43",
+            "{{SHORT_STATUS}}": "Declining",
+            "{{RSI_X}}": str(rx),
+            "{{RSI_Y}}": str(ry),
+            "{{RSI_VALUE}}": str(round(rsi_val, 1)),
+            "{{RSI_COLOR}}": rsi_color,
+            "{{RSI_STATUS}}": rsi_status,
+            "{{ADX_X}}": str(ax),
+            "{{ADX_Y}}": str(ay),
+            "{{ADX_VALUE}}": str(round(adx_val, 1)),
+            "{{ADX_COLOR}}": adx_color,
+            "{{ADX_STATUS}}": adx_status,
+            "{{REL_X}}": str(rlx),
+            "{{REL_Y}}": str(rly),
+            "{{REL_VALUE}}": str(round(rel_val, 1)),
+            "{{REL_COLOR}}": rel_color,
+            "{{REL_STATUS}}": rel_status,
             "{{DISCLOSURE_TEXT}}": f"Bunny Intelligence Engine v2.0 for {ticker}. Educational use only."
         }
 

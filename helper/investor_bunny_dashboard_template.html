@@ -476,31 +476,84 @@
                 </table>
             </div>
 
-            <div class="card span-4" id="calculator">
-                <div class="card-title">RISK CALCULATOR <span>Live Model</span></div>
-                <div class="calc-grid">
-                    <div>
-                        <label class="stat-label">Account Size ($)</label>
-                        <input type="number" id="accSize" class="calc-input" value="100000">
-                    </div>
-                    <div>
-                        <label class="stat-label">Risk %</label>
-                        <input type="number" id="riskPct" class="calc-input" value="1.5">
-                    </div>
-                    <div>
-                        <label class="stat-label">Entry Price ($)</label>
-                        <input type="number" id="entryP" class="calc-input" value="{{RAW_PRICE}}">
-                    </div>
-                    <div>
-                        <label class="stat-label">Stop Loss ($)</label>
-                        <input type="number" id="stopP" class="calc-input" value="{{RAW_STOP}}">
+            <div class="card span-4">
+                <div class="card-title">FLOW ANALYSIS <span>Institutional Bias</span></div>
+                <div
+                    style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 1rem 0;">
+                    <svg width="220" height="120" viewBox="0 0 100 55">
+                        <path d="M10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#f2ede6" stroke-width="6"
+                            stroke-linecap="round" />
+                        <path d="M10 50 A 40 40 0 0 1 {{FLOW_X}} {{FLOW_Y}}" fill="none" stroke="var(--{{FLOW_COLOR}})"
+                            stroke-width="6" stroke-linecap="round" />
+                        <text x="50" y="45" text-anchor="middle" fill="var(--text-primary)" font-family="Fraunces"
+                            font-size="12" font-weight="800">{{FLOW_LABEL}}</text>
+                        <circle cx="{{FLOW_X}}" cy="{{FLOW_Y}}" r="3" fill="var(--text-primary)" />
+                    </svg>
+                    <div style="width: 100%; margin-top: 2rem;">
+                        <div
+                            style="padding: 1rem; background: #fbf9f6; border-radius: 12px; border: 1px dashed var(--border-soft);">
+                            <span
+                                style="font-size: 0.7rem; font-weight: 800; color: var(--text-secondary); display: block; margin-bottom: 0.5rem;">SHORT
+                                INTEREST</span>
+                            <div style="display: flex; justify-content: space-between; align-items: center;"><span
+                                    style="font-weight: 700; font-size: 1.25rem;">{{SHORT_FLOAT}}% Float</span><span
+                                    class="badge badge-bull">{{SHORT_STATUS}}</span></div>
+                        </div>
                     </div>
                 </div>
-                <div class="calc-output">
-                    <div class="stat-label">Suggested Position Size</div>
-                    <div class="stat-value" id="resShares">0 Shares</div>
-                    <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 5px;">Total Risk: $<span
-                            id="resRisk">0</span></div>
+            </div>
+
+            <div class="card span-12">
+                <div class="card-title">QUANTITATIVE SIGNALS <span>Oscillators & Momentum</span></div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; text-align: center;">
+                    <!-- RSI Gauge -->
+                    <div>
+                        <div class="stat-label">RSI (14)</div>
+                        <svg width="180" height="100" viewBox="0 0 100 55">
+                            <path d="M10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#f2ede6" stroke-width="6"
+                                stroke-linecap="round" />
+                            <path d="M10 50 A 40 40 0 0 1 {{RSI_X}} {{RSI_Y}}" fill="none" stroke="var(--{{RSI_COLOR}})"
+                                stroke-width="6" stroke-linecap="round" />
+                            <text x="50" y="45" text-anchor="middle" fill="var(--text-primary)" font-family="Fraunces"
+                                font-size="12" font-weight="800">{{RSI_VALUE}}</text>
+                            <circle cx="{{RSI_X}}" cy="{{RSI_Y}}" r="3" fill="var(--text-primary)" />
+                        </svg>
+                        <div
+                            style="font-size: 0.75rem; font-weight: 700; color: var(--{{RSI_COLOR}}); margin-top: 0.5rem;">
+                            {{RSI_STATUS}}</div>
+                    </div>
+                    <!-- Trend Strength Gauge -->
+                    <div>
+                        <div class="stat-label">Trend Strength (ADX)</div>
+                        <svg width="180" height="100" viewBox="0 0 100 55">
+                            <path d="M10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#f2ede6" stroke-width="6"
+                                stroke-linecap="round" />
+                            <path d="M10 50 A 40 40 0 0 1 {{ADX_X}} {{ADX_Y}}" fill="none" stroke="var(--{{ADX_COLOR}})"
+                                stroke-width="6" stroke-linecap="round" />
+                            <text x="50" y="45" text-anchor="middle" fill="var(--text-primary)" font-family="Fraunces"
+                                font-size="12" font-weight="800">{{ADX_VALUE}}</text>
+                            <circle cx="{{ADX_X}}" cy="{{ADX_Y}}" r="3" fill="var(--text-primary)" />
+                        </svg>
+                        <div
+                            style="font-size: 0.75rem; font-weight: 700; color: var(--{{ADX_COLOR}}); margin-top: 0.5rem;">
+                            {{ADX_STATUS}}</div>
+                    </div>
+                    <!-- Relative Strength Gauge -->
+                    <div>
+                        <div class="stat-label">Relative Strength</div>
+                        <svg width="180" height="100" viewBox="0 0 100 55">
+                            <path d="M10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#f2ede6" stroke-width="6"
+                                stroke-linecap="round" />
+                            <path d="M10 50 A 40 40 0 0 1 {{REL_X}} {{REL_Y}}" fill="none" stroke="var(--{{REL_COLOR}})"
+                                stroke-width="6" stroke-linecap="round" />
+                            <text x="50" y="45" text-anchor="middle" fill="var(--text-primary)" font-family="Fraunces"
+                                font-size="12" font-weight="800">{{REL_VALUE}}%</text>
+                            <circle cx="{{REL_X}}" cy="{{REL_Y}}" r="3" fill="var(--text-primary)" />
+                        </svg>
+                        <div
+                            style="font-size: 0.75rem; font-weight: 700; color: var(--{{REL_COLOR}}); margin-top: 0.5rem;">
+                            {{REL_STATUS}}</div>
+                    </div>
                 </div>
             </div>
 
