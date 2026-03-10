@@ -12,6 +12,7 @@ helper/
 # Stock reports (served separately)
 stocks_analysis/
 
-# Assets — only logo-icon.svg is tracked
+# Assets — track all SVGs and PNGs, skip binary blobs
 assets/*
-!assets/logo-icon.svg
+!assets/*.svg
+!assets/*.png
