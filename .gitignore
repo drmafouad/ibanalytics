@@ -1,0 +1,17 @@
+# System
+.DS_Store
+**/.DS_Store
+
+# Internal planning
+plan.md
+plan.pdf
+
+# Internal helper tools
+helper/
+
+# Stock reports (served separately)
+stocks_analysis/
+
+# Assets — only logo-icon.svg is tracked
+assets/*
+!assets/logo-icon.svg
