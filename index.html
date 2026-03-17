@@ -59,12 +59,14 @@
             align-items: center;
             gap: 0.75rem;
             text-decoration: none;
+            flex-shrink: 0;
         }
 
         .topnav-mark {
             height: 2rem;
             width: auto;
             display: block;
+            flex-shrink: 0;
         }
 
         .topnav-name {
@@ -72,6 +74,7 @@
             font-weight: 700;
             font-size: 1.2rem;
             color: var(--text-primary);
+            white-space: nowrap;
         }
 
         .topnav-links {
@@ -611,17 +614,55 @@
         @media (max-width: 1024px) {
             .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
             .hero-preview { display: none; }
-            .how-grid, .features-grid { grid-template-columns: 1fr; gap: 1.5rem; max-width: 500px; }
-            .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
+            .how-grid, .features-grid { grid-template-columns: 1fr; gap: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+            .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
             .reports-grid { grid-template-columns: 1fr 1fr; }
             .topnav-links { display: none; }
         }
 
         @media (max-width: 640px) {
-            section { padding: 4rem 5%; }
+            /* Nav */
+            .topnav { padding: 0 1.25rem; height: 56px; }
+            .topnav-mark { height: 1.75rem; }
+            .topnav-name { font-size: 1rem; }
+            .topnav-cta .btn-ghost { display: none; } /* hide Sign in, keep primary CTA */
+            .topnav-cta { gap: 0.5rem; }
+            .btn { padding: 0.55rem 1rem; font-size: 0.82rem; }
+            .topnav-cta .btn-primary { white-space: nowrap; padding: 0.55rem 0.875rem; font-size: 0.8rem; }
+
+            /* Sections */
+            section { padding: 3.5rem 1.25rem; }
+            section:first-of-type { padding-top: calc(56px + 2.5rem); }
+
+            /* Hero */
+            .hero { padding-top: calc(56px + 2rem); min-height: auto; padding-bottom: 3.5rem; }
+            .hero-h1 { font-size: clamp(2.25rem, 9vw, 3.5rem); margin-bottom: 1.25rem; }
+            .hero-sub { font-size: 1.05rem; margin-bottom: 2rem; }
+            .hero-actions { flex-direction: column; gap: 0.75rem; }
+            .hero-actions .btn { width: 100%; justify-content: center; font-size: 0.95rem; padding: 0.875rem 1.5rem; }
+
+            /* Grids */
+            .how-grid, .features-grid { max-width: 100%; }
+            .pricing-grid { max-width: 100%; }
+            .pricing-card { padding: 1.75rem; }
             .reports-grid { grid-template-columns: 1fr; }
-            footer { flex-direction: column; text-align: center; gap: 1.5rem; }
+
+            /* Text */
+            .section-h2 { font-size: clamp(1.75rem, 7vw, 2.5rem); }
+            .section-sub { font-size: 1rem; }
+            .reports-section h2 { font-size: clamp(1.75rem, 7vw, 2.5rem); }
+
+            /* Footer */
+            footer { flex-direction: column; text-align: center; gap: 1.5rem; padding: 2.5rem 1.25rem; }
             .footer-links { flex-wrap: wrap; justify-content: center; }
+        }
+
+        @media (max-width: 380px) {
+            .topnav-name { display: none; }
+            .topnav-mark { height: 1.5rem; }
+            .hero-h1 { font-size: 2.1rem; }
+            .hero-sub { font-size: 0.95rem; }
+            .how-step, .pricing-card { padding: 1.5rem; }
         }
     </style>
 </head>
